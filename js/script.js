@@ -6,7 +6,7 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    fetch('${apiUrl}/api/token/', {
+    fetch('https://apigestiontareas-production.up.railway.app/api/token/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
