@@ -1,4 +1,4 @@
-const apiUrl = 'https://apigestiontareas-production.up.railway.app';
+//const apiUrl = 'https://apigestiontareas-production.up.railway.app';
 
 document.getElementById('login-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -60,7 +60,7 @@ document.getElementById('create-task-form').addEventListener('submit', function 
     }
 
 
-    fetch('${apiUrl}/api/tasks/', {
+    fetch('https://apigestiontareas-production.up.railway.app/api/tasks/', {
         method: 'POST',
         headers: {
             'Authorization': `Token ${token}`,
@@ -97,7 +97,7 @@ function fetchTasks() {
         return;
     }
 
-    fetch('${apiUrl}/api/tasks/', {
+    fetch('https://apigestiontareas-production.up.railway.app/api/tasks/', {
         method: 'GET',
         headers: {
             'Authorization': `Token ${token}`,
@@ -149,7 +149,7 @@ function fetchTasks(pageNumber = 1) { // Agrega un parámetro para el número de
         return;
     }
 
-    fetch(`${apiUrl}/api/tasks/?page=${pageNumber}`, { // Incluye el número de página en la URL de la solicitud GET
+    fetch(`https://apigestiontareas-production.up.railway.app/api/tasks/?page=${pageNumber}`, { // Incluye el número de página en la URL de la solicitud GET
         method: 'GET',
         headers: {
             'Authorization': `Token ${token}`,
@@ -227,7 +227,7 @@ function deleteTask(taskId) {
         return; // Si el usuario cancela, no hacemos nada
     }
 
-    fetch(`${apiUrl}/api/tasks/${taskId}/`, {
+    fetch(`https://apigestiontareas-production.up.railway.app/api/tasks/${taskId}/`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Token ${token}`,
@@ -260,7 +260,7 @@ function editTask(taskId) {
 
     currentTaskId = taskId;
 
-    fetch(`${apiUrl}/api/tasks/${taskId}/`, {
+    fetch(`https://apigestiontareas-production.up.railway.app/api/tasks/${taskId}/`, {
         method: 'GET',
         headers: {
             'Authorization': `Token ${token}`,
@@ -314,7 +314,7 @@ document.getElementById('edit-task-form').addEventListener('submit', function(e)
     if (taskDescription) requestBody.descripcion = taskDescription;
     if (taskDate) requestBody.fecha_expiracion = taskDate;
 
-    fetch(`${apiUrl}/api/tasks/${currentTaskId}/`, {
+    fetch(`https://apigestiontareas-production.up.railway.app/api/tasks/${currentTaskId}/`, {
         method: 'PATCH',
         headers: {
             'Authorization': `Token ${token}`,
