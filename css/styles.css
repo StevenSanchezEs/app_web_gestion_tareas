@@ -134,3 +134,34 @@ button:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+#task-table {
+    width: 100%;
+    overflow: auto;
+}
+
+.container-table {
+    overflow: auto;
+}
+
+#task-table th,
+#task-table td {
+    width: calc(100% / 9);
+}
+
+#task-table {
+    max-width: 100%;
+}
+
+td > button {
+    width: 100px !important;
+    margin: 5px 0;
+}
+
+.btn-editar {
+    background-color: #ffc107 !important;
+}
+
+.btn-eliminar {
+    background-color: #dc3545 !important;
+}

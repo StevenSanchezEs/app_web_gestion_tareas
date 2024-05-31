@@ -89,57 +89,6 @@ document.getElementById('create-task-form').addEventListener('submit', function 
     });
 });
 
-// Función para obtener y mostrar las tareas
-function fetchTasks() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        alert('No se encontró ningún token, inicie sesión nuevamente');
-        return;
-    }
-
-    fetch(`${apiUrl}/api/tasks/`, {
-        method: 'GET',
-        headers: {
-            'Authorization': `Token ${token}`,
-            'Content-Type': 'application/json',
-        },
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('No se pudieron recuperar las tareas');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Limpiar la tabla antes de agregar nuevas filas
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-
-        // Iterar sobre los resultados y agregar cada tarea a la tabla
-        data.results.forEach(task => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${task.id}</td>
-                <td>${task.titulo}</td>
-                <td>${task.descripcion}</td>
-                <td>${task.email}</td>
-                <td>${task.fecha_creacion}</td>
-                <td>${task.fecha_actualizacion}</td>
-                <td>${task.fecha_expiracion ? task.fecha_expiracion : 'N/A'}</td>
-                <td>${task.expirada ? 'Expirada' : 'Vigente'}</td>
-                <td>
-                    <button onclick="editTask(${task.id})">Edit</button>
-                    <button onclick="deleteTask(${task.id})">Delete</button>
-                </td>
-            `;
-            taskList.appendChild(row);
-        });
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('No se pudieron recuperar las tareas');
-    });
-}
 
 // Función para obtener y mostrar las tareas
 function fetchTasks(pageNumber = 1) { // Agrega un parámetro para el número de página, con un valor predeterminado de 1
@@ -211,6 +160,7 @@ document.getElementById('next-page').addEventListener('click', function() {
     currentPage++;
     fetchTasks(currentPage);
 });
+
 
 // Agregar un controlador de eventos para los botones "Delete"
 // Función para eliminar una tarea
